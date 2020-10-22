@@ -7,11 +7,11 @@
                 </view>
             </scroll-view>
         </view>
-        <view class="left">
+        <view class="left" :style="{backgroundColor: iconBg}">
             <view class="icon">
-                <view class="bar" />
-                <view class="bar" />
-                <view class="bar" />
+                <view class="bar" :style="{backgroundColor: color}" />
+                <view class="bar" :style="{backgroundColor: color}" />
+                <view class="bar" :style="{backgroundColor: color}" />
             </view>
             <view class="text" :style="{color: color}">
                 <text>分类</text>
@@ -27,6 +27,10 @@ export default {
             default(){
                 return []
             }
+        },
+        iconBg: {
+            type: String,
+            default: null
         },
         value: {
             type: Number, // 选中值
@@ -118,11 +122,11 @@ export default {
         }
     }
     .left{
-        width: 93rpx;background: #FA3F1E;font-size: 28rpx;padding: 0 20rpx;display: flex;justify-content: space-between;align-items: center;height: 32rpx;line-height: 32rpx;
+        width: 93rpx;font-size: 28rpx;padding: 0 20rpx;display: flex;justify-content: space-between;align-items: center;height: 32rpx;line-height: 32rpx;
         .icon{
             width: 22rpx;height: 24rpx;
             .bar{
-                width: 100%;height: 4rpx;border-radius: 2rpx;background: #fff;margin-top: 6rpx;
+                width: 100%;height: 4rpx;border-radius: 2rpx;margin-top: 6rpx;
             }
             .bar:nth-child(1){
                 margin-top: 0;

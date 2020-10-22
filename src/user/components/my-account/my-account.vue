@@ -11,37 +11,55 @@
                     </view>
                 </view>
                 <view class="level">业主代言人</view>
-
-                
             </view>
         </view>
         <view class="order">
-            <view class="view-item">
+            <view class="order-item">
                 <text class="num">0.00</text>
                 <text>余额</text>
             </view>
-            <view class="view-item">
+            <view class="order-item">
                 <text class="num">0.00</text>
                 <text>余额</text>
             </view>
-            <view class="view-item">
+            <view class="order-item">
                 <text class="num">0.00</text>
                 <text>余额</text>
             </view>
-            <view class="view-item">
+            <view class="order-item">
                 <text class="num">0.00</text>
                 <text>余额</text>
             </view>
         </view>
-        <view class="level-logo">
-            <image class="avater" src="/static/logo.png"></image>
-            <view class="info">
-                <text class="uname">业主代言人</text>
-                <text class="desc">一站式整装供应链平台</text>
+        <view class="level-box">
+            <view class="level-logo">
+                <image class="avater" src="/static/logo.png"></image>
+                <view class="info">
+                    <text class="uname">业主代言人</text>
+                    <text class="desc">一站式整装供应链平台</text>
+                </view>
+
+                <view class="update">
+                    立即升级 <uni-icons color="#333" type="eye" />
+                </view>
             </view>
-         
-            <view class="update">
-                立即升级 <uni-icons color="#333" type="eye" />
+            <view class="profit">
+                <view class="profit-item">
+                    <text>可提现佣金</text>
+                    <text class="num">9808.34</text>
+                </view>
+                <view class="profit-item">
+                    <text>累计佣金</text>
+                    <text class="num">9808.34</text>
+                </view>
+                <view class="profit-item">
+                    <text>今天收入</text>
+                    <text class="num">98.34</text>
+                </view>
+                <view class="profit-item">
+                    <text>可提现佣金</text>
+                    <text class="num">45471.00</text>
+                </view>
             </view>
         </view>
     </view>
@@ -103,7 +121,7 @@ export default {
 }
 .order {
     display: flex;
-    .view-item {
+    .order-item {
         flex: 1;
         display: flex;
         flex-direction: column;
@@ -119,44 +137,66 @@ export default {
         }
     }
 }
-.level-logo {
+.level-box {
     width: 100%;
-    height: 100rpx;
-    display: flex;
-    align-items: center;
-    background: linear-gradient(135deg, #F6C774 0%, #E2AA3F 100%);
+    background: linear-gradient(135deg, #f6c774 0%, #e2aa3f 100%);
     border-radius: 16px 16px 0px 0px;
     padding: 0 24rpx;
     box-sizing: border-box;
-   
-    .avater{
-        width: 54rpx;
-        height: 54rpx;
-        margin-right: 17rpx;
-        border-radius: 50%;
-    }
-    .info{
-        flex: 1;
-        font-size: 24rpx;
-        font-weight: 400;
-        color: rgba(255, 255, 255, 0.7);
-        .uname{
-            font-size: 28rpx;
-            font-weight: 500;
-            color: #FFFFFF;
-            margin-right: 8rpx;
-        }
-    }
-    .update{
-        padding: 10rpx 21rpx;
-        box-sizing: border-box;
+    .level-logo {
+        height: 100rpx;
         display: flex;
         align-items: center;
-        font-size: 24rpx;
-        color: #E2AA3F;
-        background: #FFFFFF;
-        border-radius: 28rpx;
+        .avater {
+            width: 54rpx;
+            height: 54rpx;
+            margin-right: 17rpx;
+            border-radius: 50%;
+        }
+        .info {
+            flex: 1;
+            font-size: 24rpx;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.7);
+            .uname {
+                font-size: 28rpx;
+                font-weight: 500;
+                color: #ffffff;
+                margin-right: 8rpx;
+            }
+        }
+        .update {
+            padding: 10rpx 21rpx;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            font-size: 24rpx;
+            color: #e2aa3f;
+            background: #ffffff;
+            border-radius: 28rpx;
+        }
     }
-    
+    .profit {
+        display: flex;
+        font-size: 22rpx;
+        color: rgba(255, 255, 255, 0.8);
+        border-top: 2rpx solid rgba(255, 255, 255, 0.1);
+        .profit-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 32rpx 0;
+            
+            .num {
+                font-size: 36rpx;
+                font-weight: bold;
+                color: #fff;
+                margin-top: 12rpx;
+                
+            }
+        }
+    }
 }
 </style>

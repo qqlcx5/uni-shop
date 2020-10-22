@@ -15,6 +15,15 @@
 			"style": {
 				"navigationBarTitleText": "分类"
 			}
+		},
+		{
+			"path": "user/index/index",
+			"name" : "个人中心",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
 		}
 	],
     "subPackages": [

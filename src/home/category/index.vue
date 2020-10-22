@@ -28,7 +28,7 @@
 				</scroll-view>
 			</view>
 		</view>
-		<tabBar id="tabBarRef" />
+		<tabbar id="tabBarRef" />
 	</view>
 </template>
 <script>
@@ -82,7 +82,6 @@
 	.category-content{
 		@include iosSafeArea(padding, 0px , bottom, bottom);
 		.category-right-box{
-			background-color: #F5F5F5;
 			.category-scroll{
 				height: 100%;
 			}

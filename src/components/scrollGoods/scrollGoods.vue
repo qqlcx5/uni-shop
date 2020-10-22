@@ -47,7 +47,7 @@ export default {
       height: 34rpx;font-size: 24rpx;line-height: 34rpx;color: #333;display: block;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;
     }
     .price{
-      padding-top: 30rpx;line-height: 30rpx;font-size: 30rpx;color: #FA3F1E;height: 30rpx;font-weight: bold;
+      padding-top: 30rpx;line-height: 30rpx;font-size: 30rpx;color: #FA3F1E;font-weight: bold;
       .small{
         font-size: 20rpx;vertical-align: text-bottom;font-weight: normal;
       }

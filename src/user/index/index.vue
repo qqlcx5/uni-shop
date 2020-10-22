@@ -2,8 +2,9 @@
    <view>
        <user-my-account />
        <user-order />
+       <user-my-team />
        <user-tools />
-       <tabBar />
+       <tabbar />
    </view>
 </template>
 
@@ -21,7 +22,6 @@ export default {
 page {
     width: 100%;
     height: 100%;
-    background-color: #eee;
 }
 
 </style>

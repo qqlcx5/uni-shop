@@ -3,7 +3,7 @@
 		<view class="navTop">
 			<view class="content">
 				<homeSerarch :path="searchPath" :title="shopName"/>
-				<tabs :tabs="classify" v-model="active"/>
+				<tabs :tabs="classify" v-model="active" iconColor="#FA3F1E"/>
 			</view>
 		</view>
 		<view class="banner">
@@ -28,9 +28,13 @@
 		<view class="secondsKill">
 			<card title="热销爆款">
 				<template slot="content">
-					<scrollGoods :list="secondsKillGoods" :hot="true"/>
+					<scrollGoods :list="hotGoods" :hot="true"/>
 				</template>
 			</card>
+		</view>
+		<!-- 分类 -->
+		<view class="goodsClassify">
+			<tabs :tabs="classify" v-model="active" color="#333"/>
 		</view>
 	</view>
 </template>
@@ -41,10 +45,10 @@
 	import { banner } from './components/banner'
 	import { matrixMenu } from './components/matrixMenu'
 	import { timeTabs } from './components/timeTabs'
-	import { scrollGoods } from '@/components/scrollGoods/scrollGoods'
+	// import { scrollGoods } from '@/components/scroll-goods/scroll-goods'
 	export default {
 		components:{
-			homeSerarch, tabs, banner, matrixMenu, timeTabs, scrollGoods
+			homeSerarch, tabs, banner, matrixMenu, timeTabs//, scrollGoods
 		},
 		data() {
 			return {
@@ -82,10 +86,16 @@
 				],
 				sessionIndex: 0,
 				secondsKillGoods: [
-					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00' },
-					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00' },
-					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00' },
-					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00' },
+					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
+					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
+					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
+					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
+				],
+				hotGoods: [
+					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
+					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
+					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
+					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
 				]
 			}
 		},
@@ -131,5 +141,8 @@ image{
 }
 .secondsKill{
 	margin-bottom: 20rpx;
+}
+.goodsClassify{
+	margin: 0 24rpx;
 }
 </style>
