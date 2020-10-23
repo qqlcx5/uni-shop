@@ -559,6 +559,13 @@ view.uni-input-placeholder,text.uni-input-placeholder,picker.uni-input-placehold
     .mt#{$i * 12}{
         margin-top: ($i * 12)rpx !important;
     }
+    .mtb#{$i * 5}{
+        margin-top: ($i * 5)rpx !important;
+        margin-bottom: ($i * 5)rpx !important;
+    }
+    .mt#{$i * 5}{
+        margin-top: ($i * 5)rpx !important;
+    }
 }
 
 /*

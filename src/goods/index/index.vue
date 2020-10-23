@@ -1,11 +1,8 @@
+
 <template>
-   <view>
-        <user-my-account />
-        <user-my-order />
-        <user-my-team />
-        <user-my-tools />
-       <global-tabbar />
-   </view>
+    <view>
+        index
+    </view>
 </template>
 
 <script>

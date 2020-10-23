@@ -21,7 +21,7 @@ export default {
         },
         autoplay:{
             type: Boolean,
-            default: false
+            default: true
         },
         interval:{
             type: Number,
@@ -52,7 +52,6 @@ export default {
         },
         change(enent){
             this.active = enent.detail.current
-            console.log(this.active)
         }
     }
 }

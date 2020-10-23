@@ -1,9 +1,9 @@
 <template>
-	<view class="ss-content category-content">
+	<view class="ss-content home-category-content">
 		<view class="search-box ss-underline" id="searchRef">
-			<ss-input class="search-box__input" placeholder="输入搜索关键词">
+			<global-ss-input class="search-box__input" placeholder="输入搜索关键词">
 				<image class="search-box__image" src="~@/static/image/home/search.png" slot="before" mode="widthFix"></image>
-			</ss-input>
+			</global-ss-input>
 		</view>
 		<view class="flex category-box" :style="{height: scrollHeight}">
 			<view class="category-left-box">
@@ -28,7 +28,7 @@
 				</scroll-view>
 			</view>
 		</view>
-		<tabbar id="tabBarRef" />
+		<global-tabbar id="tabBarRef" />
 	</view>
 </template>
 <script>
@@ -42,6 +42,7 @@
 			}
 		},
 		onLoad() {
+            console.timeEnd('star')
 			this.calcELHeight();
 			this.getCatalogList();
 		},
@@ -65,6 +66,7 @@
 			async getCatalogList(id) {
 				id && (this.categoryData = []);
 				let res = await this.$http('catalogList', id);
+				console.log(res)
 				if(res.code === 1){
 					if( id !== undefined){
 						this.categoryData = res.data;
@@ -79,7 +81,7 @@
 </script>
 
 <style lang="scss">
-	.category-content{
+	.home-category-content{
 		@include iosSafeArea(padding, 0px , bottom, bottom);
 		.category-right-box{
 			.category-scroll{

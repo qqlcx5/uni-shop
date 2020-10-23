@@ -235,8 +235,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 60rpx;
-		line-height: 60rpx;
+		height: 64rpx;
 		position: relative;
 		padding: 0 20rpx;
 		/* #ifdef MP-WEIXIN */

@@ -2,8 +2,8 @@
 	<view class="page">
 		<view class="navTop">
 			<view class="content">
-				<homeSerarch :path="searchPath" :title="shopName"/>
-				<tabs :tabs="classify" v-model="active" iconColor="#FA3F1E"/>
+				<homeSerarch :path="searchPath" :title="shopName" :scrollTop="scrollTop" v-model="isFixed"/>
+				<tabs :tabs="classify" v-model="active" iconBg="#FA3F1E" :isFixed="isFixed"/>
 			</view>
 		</view>
 		<view class="banner">
@@ -20,7 +20,7 @@
 			<card title="限时秒杀" session="8点场" :timeOut="3680">
 				<template slot="content">
 					<timeTabs :list="session" v-model="sessionIndex"/>
-					<scrollGoods :list="secondsKillGoods"/>
+					<scroll-goods :list="secondsKillGoods"/>
 				</template>
 			</card>
 		</view>
@@ -28,30 +28,37 @@
 		<view class="secondsKill">
 			<card title="热销爆款">
 				<template slot="content">
-					<scrollGoods :list="hotGoods" :hot="true"/>
+					<scroll-goods :list="hotGoods" :hot="true"/>
 				</template>
 			</card>
 		</view>
 		<!-- 分类 -->
-		<view class="goodsClassify">
-			<tabs :tabs="classify" v-model="active" color="#333"/>
+		<view class="classify">
+			<tabs :tabs="classify" border v-model="active" color="#333"/>
 		</view>
+		<view class="goodsList">
+			<!-- <goods-list :list="goodsList"/> -->
+		</view>
+		<!-- 有小菜单 -->
+		<slideMenu />
 	</view>
 </template>
-
 <script>
-	import { homeSerarch } from './components/serarch'
-	import { tabs } from './components/tabs'
-	import { banner } from './components/banner'
-	import { matrixMenu } from './components/matrixMenu'
-	import { timeTabs } from './components/timeTabs'
+	import homeSerarch from './components/serarch'
+	import tabs from './components/tabs'
+	import banner from './components/banner'
+	import matrixMenu from './components/matrixMenu'
+	import timeTabs from './components/timeTabs'
+	import slideMenu from './components/slide-menu'
 	// import { scrollGoods } from '@/components/scroll-goods/scroll-goods'
 	export default {
 		components:{
-			homeSerarch, tabs, banner, matrixMenu, timeTabs//, scrollGoods
+			homeSerarch, tabs, banner, matrixMenu, timeTabs, slideMenu//, scrollGoods
 		},
 		data() {
 			return {
+				isFixed: false,
+				scrollTop: 0,
 				searchPath: '', // 搜素页面路径
 				shopName: '我是店铺名称',
 				classify: [
@@ -96,7 +103,14 @@
 					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
 					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
 					{ name: '潜水艇304不锈钢', price: '399.00', oldPrice: '599.00',src: '' },
-				]
+				],
+				goodsList: [
+					{ name: '潜水艇304不锈钢潜水艇304不锈钢潜水艇304不锈钢潜水艇304不锈钢', price: '399.00', src: '', hot: '热销' },
+					{ name: '潜水艇304不锈钢', price: '399.00', src: '' },
+					{ name: '潜水艇304不锈钢', price: '399.00', src: '' },
+					{ name: '潜水艇304不锈钢', price: '399.00', src: '' }
+				],
+				previous: 0
 			}
 		},
 		onLoad() {},
@@ -106,15 +120,28 @@
 		methods: {
 			init() {
 			}
-		}
+		},
+		onPageScroll(obj){
+			let now = Date.now();
+			if (now - this.previous > 17) {
+				this.scrollTop = obj.scrollTop
+				this.previous = now;
+			}
+		},
 	}
 </script>
 <style>
 page{
 	background: #F5F5F5;
 }
-image{
+/* image{
 	background: #ccc;border-radius: 4rpx;
+} */
+view{
+	box-sizing: unset;
+}
+::-webkit-scrollbar{
+	width: 0;height: 0; color: transparent;
 }
 </style>
 <style lang="scss" scoped>
@@ -142,7 +169,10 @@ image{
 .secondsKill{
 	margin-bottom: 20rpx;
 }
-.goodsClassify{
+.goodsList{
 	margin: 0 24rpx;
+}
+.classify{
+	margin: 0 0 10rpx;
 }
 </style>

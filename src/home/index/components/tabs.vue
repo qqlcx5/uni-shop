@@ -1,22 +1,24 @@
 <template>
     <view class="tabs">
-        <view class="right">
-            <scroll-view :scroll-x="true" :scroll-left="scrollLeft > containerWidth / 4 ? scrollLeft : 0" class="scrollView" :scroll-with-animation="true">
-                <view class="item" v-for="(item, index) in tabs" :key="index" :class="{active: index === active}" :style="{color: color}" @tap="jump(item.path,index)">
-                    <text>{{item.name}}</text>
+        <view class="body" :class="{fixed: isFixed}" :style="{backgroundColor: iconBg}">
+            <view class="right">
+                <scroll-view :scroll-x="true" :scroll-left="scrollLeft > containerWidth / 4 ? scrollLeft : 0" class="scrollView" :scroll-with-animation="true" :show-scrollbar="false">
+                    <view class="item" v-for="(item, index) in tabs" :key="index" :class="{active: index === active, border: border}" :style="{color: color}" @tap="jump(item.path,index)">
+                        <text>{{item.name}}</text>
+                    </view>
+                </scroll-view>
+            </view>
+            <view class="left" :style="{backgroundColor: iconBg}">
+                <view class="icon">
+                    <view class="bar" :style="{backgroundColor: color}" />
+                    <view class="bar" :style="{backgroundColor: color}" />
+                    <view class="bar" :style="{backgroundColor: color}" />
                 </view>
-            </scroll-view>
-        </view>
-        <view class="left" :style="{backgroundColor: iconBg}">
-            <view class="icon">
-                <view class="bar" :style="{backgroundColor: color}" />
-                <view class="bar" :style="{backgroundColor: color}" />
-                <view class="bar" :style="{backgroundColor: color}" />
+                <view class="text" :style="{color: color}">
+                    <text>分类</text>
+                </view>
             </view>
-            <view class="text" :style="{color: color}">
-                <text>分类</text>
             </view>
-        </view>
     </view>
 </template>
 <script>
@@ -27,6 +29,10 @@ export default {
             default(){
                 return []
             }
+        },
+        border: {
+            type: Boolean,
+            default: Boolean
         },
         iconBg: {
             type: String,
@@ -39,6 +45,10 @@ export default {
         color: {
             type: String,
             default: '#fff'
+        },
+        isFixed: {
+            type: Boolean,
+            default: false
         }
     },
     computed: {
@@ -58,7 +68,9 @@ export default {
     },
     data() {
         return {
-            containerWidth: '',
+            containerWidth: null,
+            containerTop: null,
+            fixTop: false,
             itemLength: 0
         }
     },
@@ -78,14 +90,18 @@ export default {
                 // #ifndef MP-ALIPAY
                 .in(this)
                 // #endif
-            // 获取容器的宽度
+            // 获取容器的宽度 
             query.select('.tabs .right').boundingClientRect((data) => {
                 if (!this.containerWidth && data) {
                     this.containerWidth = data.width
                 }
                 }).exec()
+            query.select('.tabs').boundingClientRect((data) => {
+                if (!this.containerTop && data) {
+                    this.containerTop = data.top
+                }
+            }).exec()
             // 获取所有的 tab-item 的宽度
-            
             query.selectAll('.tabs .right .item').boundingClientRect((data) => {
                 for (let i = 0; i < data.length; i++) {
                     const item = data[i]
@@ -96,6 +112,7 @@ export default {
             }).exec()
         }
     },
+    
     mounted() {
         this.$nextTick(() => {
             this.getTabItemWidth()
@@ -105,7 +122,13 @@ export default {
 </script>
 <style lang="scss" scoped>
 .tabs{
-    display: flex;align-items: center;justify-content: space-between;height: 88rpx;
+    height: 88rpx;
+    .body{
+        height: 88rpx;display: flex;align-items: center;justify-content: space-between;transition: padding .3s;
+    }
+    .fixed{
+        position: fixed;top: 0;left: 0;width: 100%;z-index: 999;padding-top: 88rpx;
+    }
     .right{
         height: 32rpx;font-size: 0;line-height: 32rpx;position: relative;white-space: nowrap;width: calc(100% - 133rpx);
         .scrollView{
@@ -119,6 +142,9 @@ export default {
         }
         .item.active::after{
             content: '';display: block;width: 30rpx;height: 13rpx;position: absolute;bottom: -18rpx;left: 50%;margin-left: -15rpx;background: url('@/static/home/active.png') no-repeat center center;background-size: 100% auto;
+        }
+        .item.active.border::after{
+            background: #333;width: 48rpx;height: 4rpx;border-radius: 3rpx;margin-left: -24rpx;
         }
     }
     .left{

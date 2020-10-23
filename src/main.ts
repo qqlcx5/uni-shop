@@ -24,7 +24,7 @@ const app= new App();
 // #ifdef H5
 	RouterMount(app,'#app');
 // #endif
-
+console.time('star')
 // #ifndef H5
 	app.$mount(); //为了兼容小程序及app端必须这样写才有效果
 // #endif

@@ -1,9 +1,9 @@
 <template>
 	<view class="ss-menu-scroll-box">
 		<slot name="before"></slot>
-		<scroll-view class="ss-menu-scroll line-1" :class="{'ss-menu-scroll-horizontal': scrollX_}" :scroll-x="scrollX_" :scroll-y="!scrollX_" scroll-with-animation :scroll-into-view="currentView_">
-			<view class="ss-menu-scroll-list" :class="['ss-menu-scroll-list-' + config.length]">
-				<view class="ss-menu-scroll-item" @click="changeType(index)" :id="'type' + index" v-for="(item, index) in config" :key="item.value" :class="['ss-menu-scroll-item-' + config.length, {'ss-menu-scroll-item__active' : value === index}, {'flex-1': config.length <= 4}]">
+		<scroll-view class="ss-menu-scroll line-1" :class="{'ss-menu-scroll-horizontal': scrollX_, 'ss-menu-scroll-home': mode === 'homeIndex'}" :scroll-x="scrollX_" :scroll-y="!scrollX_" scroll-with-animation :scroll-into-view="currentView_">
+			<view class="ss-menu-scroll-list">
+				<view class="ss-menu-scroll-item" @click="changeType(index)" :id="'type' + index" v-for="(item, index) in config" :key="index" :class="{'ss-menu-scroll-item__active' : menuIndex === index}">
 					<text class="ss-menu-scroll-text">{{item[label]}}</text>
 				</view>
 			</view>
@@ -14,6 +14,11 @@
 
 <script>
 	export default {
+        data() {
+           return {
+               menuIndex: 0
+           }
+        },
 		props: {
 			config: {
 				type: Array,
@@ -30,8 +35,17 @@
 			label: {
 				type: String,
 				default: 'label'
-			}
+			},
+            mode: {
+				type: String,
+				default: 'normal'
+			},
 		},
+        watch: {
+            value(val) {
+                this.changeType(val);
+            }
+        },
 		computed: {
 			scrollX_() {
 				return String(this.scrollX) === 'false' ? false : true;
@@ -44,9 +58,10 @@
 		},
 		methods: {
 			changeType(index){
-				console.log(index);
-				if(this.value === index) return ;
+				if(this.menuIndex === index) return ;
+                this.menuIndex = index;
 				this.$emit('input', index);
+				this.$emit('change', this.config[index]);
 			}
 		}
 	}
@@ -57,12 +72,14 @@
 	width: 100%;
 	height: 100%;
 	position: relative;
+    display: flex;
+    align-items: center;
 	.ss-menu-scroll{
-		@include abs(0, 0);
-		width: 100%;
-		height: 100%;
+		flex: 1;
+        width: 50%;
+        height: 100%;
 	}
-	
+
 	.ss-menu-scroll-list{
 		width: 100%;
 	}
@@ -88,37 +105,73 @@
 		line-height:50rpx;
 		height:50rpx;
 		font-size: 28rpx;
+        position: relative;
 		font-family: PingFangSC-Regular, PingFang SC;
 	}
-	.ss-menu-scroll-item-3{
-		width: 240rpx;
-	}
 
-	.ss-menu-scroll-item-4{
-		width: 180rpx;
-	}
-	
 	.ss-menu-scroll-horizontal{
 		.ss-menu-scroll-list{
-			/* #ifndef APP-PLUS-NVUE */
-			display: flex;
-			/* #endif */
-			flex-direction: row;
-			flex-wrap: nowrap;
-			padding: 0 15rpx;
-			font-size: 0;
+            white-space: nowrap;
 			width: 100%;
 		}
 		.ss-menu-scroll-list-3{
 			padding: 0 40rpx;
 		}
-		
+
 		.ss-menu-scroll-list-4{
 			padding: 0 10rpx;
 		}
 		.ss-menu-scroll-item{
 			display: inline-block;
+            color: #333333;
+            padding: 0 24rpx;
+            font-weight: 400;
+            &.ss-menu-scroll-item__active{
+                .ss-menu-scroll-text{
+                    color: #333;
+                    font-weight: 500;
+                    background: transparent;
+                    border-radius: 0;
+                }
+                &::after{
+                    content: '';
+                    width: 48rpx;
+                    height: 4rpx;
+                    background: #333333;
+                    border-radius: 3px;
+                    @include abs(null, 50%, 0);
+                    transform: translateX(50%);
+                }
+            }
 		}
 	}
+    .ss-menu-scroll-home{
+		.ss-menu-scroll-item{
+            display: inline-block;
+            color: #fff;
+            padding: 0 20rpx;
+            font-weight: 400;
+            .ss-menu-scroll-text{
+                color: #fff;
+                line-height:88rpx;
+                height:88rpx;
+            }
+            &.ss-menu-scroll-item__active{
+                .ss-menu-scroll-text{
+                    color: #fff;
+                    font-size: 32rpx;
+                    font-weight: 500;
+                    background: transparent;
+                    border-radius: 0;
+                }
+                &::after{
+                    content: '';
+                    width: 30rpx;
+                    height: 14rpx;
+                    background: url(../../static/home/active.png) center bottom / 100% auto no-repeat;
+                }
+            }
+        }
+    }
 }
 </style>

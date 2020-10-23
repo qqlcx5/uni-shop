@@ -86,7 +86,8 @@
         "publicPath" : "./uniapph5",
         "router" : {
             // "mode" : "history",
-            "base" : "/"
+            "base" : "/",
+            "mode" : "history"
         },
         "async" : {
             "timeout" : 20000
@@ -97,11 +98,9 @@
             }
         },
         "devServer" : {
-            "host" : "bd.meijiabang.com",
-            "port" : 80,
             "proxy" : {
                 "/api" : {
-                    "target" : "https://shop2.meijiabang.com",
+                    "target" : "http://192.168.1.144/",
                     "secure" : false,
                     "changeOrigin" : true,
                     "pathRewrite" : {

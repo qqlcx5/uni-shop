@@ -27,7 +27,7 @@ const http = new Request({
 http.interceptors.request.use((config) => {
     config.header = {
         ...config.header,
-        token: getTokenStorage(),
+        'Authorization': 'Bearer ' + getTokenStorage(),
         'app-from': store.state.config.pagePath
     }
     /*

@@ -1,40 +1,50 @@
 {
-	"pages": [
-		{
-			"path": "home/index/index",
-			"name": "home",
-			"style": {
-				"navigationBarTitleText": "首页",
-				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white"
-			}
-		},
-		{
-			"path": "home/category/index",
-			"name" : "category",
-			"style": {
-				"navigationBarTitleText": "分类"
-			}
-		},
-		{
-			"path": "user/index/index",
-			"name" : "个人中心",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"navigationStyle": "custom",
-				"navigationBarTextStyle": "white"
-			}
-		}
-	],
+    "pages": [
+        {
+            "path": "home/index/index",
+            "name": "home",
+            "style": {
+                "navigationBarTitleText": "首页",
+                "navigationStyle": "custom",
+                "navigationBarTextStyle": "white"
+            }
+        },
+        {
+            "path": "home/category/index",
+            "name": "category",
+            "style": {
+                "navigationBarTitleText": "分类"
+            }
+        }
+    ],
     "subPackages": [
         {
             "root": "user",
             "pages": [
                 {
                     "path": "index/index",
-                    "name" : "user",
+                    "name": "user",
                     "style": {
                         "navigationBarTitleText": "我的"
+                    }
+                }
+            ]
+        },
+        {
+            "root": "goods",
+            "pages": [
+                {
+                    "path": "search/list",
+                    "name" : "searchList",
+                    "style": {
+                        "navigationBarTitleText": "我的"
+                    }
+                },
+                {
+                    "path": "details/index",
+                    "name": "goodDetail",
+                    "style": {
+                        "navigationBarTitleText": "商品详情"
                     }
                 }
             ]
@@ -49,7 +59,9 @@
 	"easycom": {
 	  "autoscan": true,
 	  "custom": {
-	    "^user-(.*)": "@/user/components/$1/$1.vue" // 匹配user目录内的组件vue文件
+	    "^global-(.*)": "@/components/$1/$1.vue", // 全局组件vue文件
+	    "^user-(.*)": "@/user/components/$1/$1.vue", // 匹配user目录内的组件vue文件
+	    "^goods-(.*)": "@/goods/components/$1/$1.vue" // 匹配user目录内的组件vue文件
 	  }
 	}
 }

@@ -49,13 +49,14 @@ export default function requestBefore(name, query = {}, modifyObj = {}, type) {
 	}
 	type = (type || catchObj.type || 'POST').toLocaleLowerCase();
 	return new Promise((resolve, reject) => {
-		catchObj.loading && showLoading(catchObj.loading);
+		catchObj.loading && that_.$loading(catchObj.loading);
+		return ;
 		catchObj.url += (that_.$typeOf(query) !== 'Object' ? ('/' + query) : '');
 		http[type](catchObj.url, query).then(async res => {
 			responseSuccess(res, catchObj, query);
 			resolve(res);
 		}).catch(err => {
-			catchObj.loading && hideLoading();
+			catchObj.loading && that_.$hideLoading();
 			uni.getNetworkType({
 				success: (res) => {
 					if (res.networkType === 'none' || res.networkType === 'unknown') {
@@ -109,7 +110,7 @@ async function responseSuccess(res, catchObj, query) {
 		} else{
 			catchObj.showErr && that_.$toast(res.msg);
 		}
-	} 
+	}
 }
 
 /**
