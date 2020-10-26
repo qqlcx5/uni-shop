@@ -45,12 +45,12 @@
             </view>
             <view class="team-state">
                 <view class="team-item">
-                    <uni-icons color="#333" size="60" type="eye" />
-                    <text>待付款</text>
+                     <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                    <text class="desc">余额</text>
                 </view>
                 <view class="team-item">
-                    <uni-icons color="#333" size="60" type="eye" />
-                    <text>待付款</text>
+                    <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                    <text class="desc">余额</text>
                 </view>
             </view>
         </view>
@@ -103,14 +103,12 @@ export default {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                padding: 32rpx 0;
+                padding: 24rpx 20rpx;
                 color: #333333;
                 position: relative;
-                .num {
-                    font-size: 36rpx;
-                    font-weight: bold;
-                    color: #000;
-                    margin-bottom: 16rpx;
+                box-sizing: border-box;
+                .desc{
+                    margin-top: 18rpx;
                 }
             }
         }
