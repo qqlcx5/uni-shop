@@ -527,6 +527,7 @@ picker.uni-input-placeholder {
 */
 .font-sm {
     font-size: $font-sm !important;
+    ;
 }
 
 .font-base {
@@ -535,11 +536,13 @@ picker.uni-input-placeholder {
 
 .font-lg {
     font-size: $font-lg !important;
+    ;
 }
 
 /*
   常用边距margin padding
 */
+
 @for $i from 0 to 4 {
     .hr#{$i * 12} {
         height: $i * 12rpx;
@@ -572,7 +575,6 @@ picker.uni-input-placeholder {
         margin-top: $i * 12rpx !important;
     }
 }
-
 
 /*
 	下划线

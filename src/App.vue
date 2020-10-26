@@ -17,7 +17,7 @@
 
 <style lang="scss">
     /*每个页面公共css */
-	@import "./static/css/common.scss";
+	@import "~@/assets/css/common.scss";
     /* 字体文件包 */
 	@import '~@/assets/font/d-din-font.css';
 </style>

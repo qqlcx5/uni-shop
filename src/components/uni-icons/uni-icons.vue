@@ -1,5 +1,5 @@
 <template>
-	<text :style="{ color: color, 'font-size': size_ + 'px' }" class="iconfont" :class="[type]" @click="onClick_"></text>
+	<text :style="{ 'font-size': size_ + 'px' }" class="iconfont" :class="[type]" @click="onClick_"></text>
 </template>
 
 <script>
@@ -33,5 +33,5 @@
 </script>
 
 <style scoped>
-    @import "./iconfont/iconfont.css";
+    @import "@/assets/iconfont/iconfont.css";
 </style>

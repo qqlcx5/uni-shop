@@ -17,16 +17,17 @@
 		props: {
 			/*
 			* 参数说明（定位）
+            * top  left  right bottom middle
 			*/
-			position: {//可能值  top  left  right bottom middle
+			position: {
 				type: String,
 				default: 'middle'
 			},
 			/*
 			* 参数说明
-			* full 宽度100%
+			* full 宽度100%   适用于配合position上下弹出
 			* insert 80%宽度内联小框
-			* cover 宽度高度100%
+			* cover 宽度高度100%  适用于配合position左右菜单
 			*/
 			mode: {
 				type: String,
@@ -194,6 +195,7 @@
 	}
 	.ss-modal-left{
 		left: 0;
+		transform: translate(-100%, 0);
 		max-width: 80%;
 	}
 	.ss-modal-insert{
@@ -225,18 +227,12 @@
 			top: 0;
 			transform: translate(-50%, 0);
 		}
-		.ss-modal-full.ss-modal-top{
-			transform: translate(0, 0);
-		}
 		.ss-modal-full.ss-modal-middle{
 			transform: translate(0, -50%);
 		}
-        .ss-modal-right{
+        .ss-modal-right, .ss-modal-left, .ss-modal-bottom, .ss-modal-top{
 			transform: translate(0, 0);
         }
-		.ss-modal-bottom{
-			transform: translate(0, 0);
-		}
 		.ss-modal-bottom.ss-modal-insert{
 			transform: translate(-50%, 0);
 		}

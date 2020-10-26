@@ -13,29 +13,50 @@
                         <image class="search-box__after_image" v-else src="../../static/image/product/row-icon.png" mode="widthFix"></image>
                     </view>
                 </view>
-                <view class="filter-box flex-ajcenter tc">
-                    <view class="flex-1">
-                        综合推荐
+                <view class="filter-box flex-ajcenter tc" :class="{'ss-underline': brandFlag}">
+                    <view class="flex-1" @click="filterClick(1, 2)">
+                        <global-colors :theme="isSelect_(1, 2) ? 't' : '#333333'">
+                            <view class="filter-item">
+                                综合推荐
+                                <uni-icons size="32" class="filter-item__icon" :class="{'filter-item__icon_rotate180': filterIndex === 2}" type="icon-xuanzhongsanjiaoxing"></uni-icons>
+                            </view>
+                        </global-colors>
                     </view>
                     <view class="flex-1" @click="changeModalFlag(!brandFlag)">
-                        品牌
+                        <global-colors :theme="brandFlag ? 't' : '#333333'">
+                            <view class="filter-item">品牌</view>
+                        </global-colors>
                     </view>
-                    <view class="flex-1">
-                        销量
+                    <view class="flex-1" @click="filterClick(3, 3)">
+                        <global-colors :theme="isSelect_(3, 3) ? 't' : '#333333'">
+                            <view class="filter-item">销量</view>
+                        </global-colors>
                     </view>
-                    <view class="flex-1">
-                        价格
+                    <view class="flex-1" @click="filterClick(4, 5)">
+                        <global-colors :theme="isSelect_(4, 5) ? 't' : '#333333'">
+                            <view class="filter-item">
+                                价格
+                                <uni-icons size="32" class="filter-item__icon" :class="{'filter-item__icon_rotate180': filterIndex === 5}" type="icon-xuanzhongsanjiaoxing"></uni-icons>
+                            </view>
+                        </global-colors>
                     </view>
                     <view class="flex-1" @click="changeModalFlag(true, 'filterFlag')">
-                        筛选
+                        <global-colors :theme="filterFlag ? 't' : '#333333'">
+                            <view class="filter-item">
+                                筛选
+                                <uni-icons type="icon-shaixuan1" size="36" color="#333333" class="filter-item__icon filter-item__icon_big"></uni-icons>
+                            </view>
+                        </global-colors>
                     </view>
                 </view>
             </view>
             <view class="filter-content" :class="{'filter-content__active': brandFlag}">
                 <view class="brand-box">
                     <view class="brand-item" v-for="(item, index) in brandList" :key="index" @click="changeChecked(index, 'brandList')" :class="{'brand-item__active': item.checked}">
-                        <image src="../../static/image/product/filter-select.png"></image>
-                        <text>美的{{index + 1}}</text>
+                        <global-colors :theme="item.checked ? 't' : '#333333'">
+                            <uni-icons size="20" class="brand-item__icon" type="icon-dagou"></uni-icons>
+                            <text>美的{{index + 1}}</text>
+                        </global-colors>
                     </view>
                     <view class="flex filter-btn-gruop">
                         <view class="flex-1">
@@ -96,6 +117,7 @@
                 lowPrice: '',
                 hightPrice: '',
                 listMode: 'row',
+                sortStatus: 0,
                 brandList: [{
                     value: 1,
                     label: '美的1'
@@ -111,16 +133,37 @@
                 }],
                 brandFlag: false, //品牌弹窗标识
                 filterFlag: false,//筛选弹窗标识
+                filterIndex: 0,//筛选的参数
                 serveList: [{
                     value: 1,
                     label: '仅看有货'
                 }, {
                     value: 2,
                     label: '促销'
-                }]
+                }],
+            }
+        },
+        computed: {
+            isSelect_() {
+                return (min, max) => {
+                    return this.filterIndex >= min && this.filterIndex <= max;
+                }
             }
         },
         methods: {
+            filterClick(min, max) {
+                this.changeModalFlag(false, 'brandFlag');
+                this.changeModalFlag(false, 'filterFlag');
+                if(this.filterIndex + 1 > max){
+                    this.filterIndex = 0;
+                }else{
+                    if(this.filterIndex < min || this.filterIndex > max){
+                        this.filterIndex = min;
+                    }else{
+                        this.filterIndex++;
+                    }
+                }
+            },
             /**
              * 选中函数
              * index 要修改的下标值
@@ -250,10 +293,8 @@
                         line-height: 40rpx;
                         position: relative;
                         @include tst();
-                        image{
+                        .brand-item__icon{
                             @include abs(50%, null, null, 0);
-                            width: 30rpx;
-                            height: 30rpx;
                             transform: translateY(-50%);
                             opacity: 0;
                             @include tst();
@@ -262,7 +303,7 @@
                             font-size: bold;
                             color: #FA3F1E;
                             padding-left: 36rpx;
-                            image{
+                            .brand-item__icon{
                                 opacity: 1;
                             }
                         }
@@ -276,6 +317,26 @@
                 z-index: 10;
                 .filter-box{
                     height: 80rpx;
+                    .flex-1{
+                        font-size: 26rpx;
+                        font-weight: 400;
+                        color: #333333;
+                        white-space: nowrap;
+                    }
+                    .filter-item__icon{
+                        display: inline-block;
+                        position: absolute;
+                        @include tst(transform);
+                        margin-left: -20rpx;
+                        transform: scale(.25);
+                        &.filter-item__icon_big{
+                            transform: scale(.5);
+                            margin-left: -10rpx;
+                        }
+                        &.filter-item__icon_rotate180{
+                            transform: scale(.25) rotate(-180deg);
+                        }
+                    }
                 }
             }
         }

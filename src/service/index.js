@@ -14,6 +14,7 @@ let that_ = Vue.prototype;
  */
 export default function requestBefore(name, query = {}, modifyObj = {}, type) {
 	let catchObj = that_.$deepClone(needCatchList[name] || {});
+    console.log(name, catchObj);
 	if (modifyObj) {
 		for (var i in modifyObj) {
 			if (typeof modifyObj[i] == 'object' && typeof catchObj[i] == 'object') {
@@ -212,8 +213,3 @@ function removeStorageSync(list) {
 		}
 	})
 }
-
-
-// 登录接口写在这边
-// export function set
-

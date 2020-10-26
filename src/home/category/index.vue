@@ -45,6 +45,11 @@
 		onLoad() {
 			this.calcELHeight();
 			this.getCatalogList();
+            setTimeout(() => {
+                this.$Router.push({
+                    name: 'searchList'
+                })
+            }, 50)
 		},
 		computed: {
 			curCategory_() {
