@@ -1,9 +1,9 @@
 <template>
     <view class="goods-header-tabs flex-ajcenter">
         <text class="uname" :class="{'active': active === 'goods'}" @click="handleSelect('goods')">商品</text>
-        <text class="uname" :class="{'active': active === 'details'}" @click="handleSelect('details')">商品</text>
-        <text class="uname" :class="{'active': active === 'recommend'}" @click="handleSelect('recommend')">商品</text>
-        <text class="uname" @click="handleSelect('')">分享</text>
+        <text class="uname" :class="{'active': active === 'details'}" @click="handleSelect('details')">详情</text>
+        <text class="uname" :class="{'active': active === 'recommend'}" @click="handleSelect('recommend')">推荐</text>
+        <uni-icons size="40" class="uname" type="iconfenxiang"/>
     </view>
 </template>
 <script>

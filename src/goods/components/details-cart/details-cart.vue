@@ -7,12 +7,12 @@
                 <text>客服</text>
             </view>
             <view class="icon flex-ajcenter">
-                <!-- <uni-icons color="#333" size="60" type="eye"/> -->
-                <text>客服</text>
+                <uni-icons size="44" type="icongouwuche"/>
+                <text>购物车</text>
             </view>
             <view class="icon flex-ajcenter">
-                <text>1</text>
-                <text>客服</text>
+                <uni-icons size="44" type="iconshoucang"/>
+                <text>收藏</text>
             </view>
             <view class="flex details-cart__box">
                 <view class="btn-error">
