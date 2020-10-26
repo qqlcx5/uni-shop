@@ -124,3 +124,21 @@ $uni-font-size-paragraph:30rpx;
 	#{$newPro}: calc(#{$num} #{$plus} constant(safe-area-inset-#{$area}));
 	#{$newPro}: calc(#{$num} #{$plus} env(safe-area-inset-#{$area}));
 }
+
+.price-com {
+	display: flex;
+	align-items: flex-end;
+	font-size: 26rpx;
+	color: $color-error;
+	font-family: 'd-din';
+	font-weight: bold;
+	line-height: 1;
+	&::before {
+		position: relative;
+		bottom: 2rpx;
+		width: 60%;
+		content: '￥';
+		font-size: 60%;
+		color: $color-error;
+	}
+}

@@ -2,7 +2,8 @@
     <view>
         <view class="goods-price">
             <view class="flex align-center justify-between ">
-                <view class="num">1699<text class="sub">¥1999</text></view>
+                <!-- <view class="num">1699<text class="sub">¥1999</text></view> -->
+                <view class="price-com">1699</view>
                 <view class="share flex"
                     >分享赚<view class="share-num flex-ajcenter"
                         >16%</view
@@ -51,17 +52,11 @@
     box-sizing: border-box;
     background-color: #fff;
     margin-bottom: 24rpx;
-    .num {
+    .price-com {
         font-size: 56rpx;
         font-weight: bold;
-        color: #fa3f1e;
-        position: relative;
-        padding-left: 16rpx;
         &::before {
-            content: "¥";
-            position: absolute;
-            bottom: 10rpx;
-            left: 0;
+		    bottom: 8rpx;
             font-size: 28rpx;
         }
         .sub {
