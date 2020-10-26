@@ -235,10 +235,10 @@ export const isWeiXin = (() => {
 	return false;
 })();
 
-export function getElSize(id, self) { //得到元素的size
+export function getElSize(id) { //得到元素的size
 	return new Promise((res, rej) => {
-		self && self.$nextTick(() => {
-			uni.createSelectorQuery().in(self).select('#' + id).fields({
+		this && this.$nextTick(() => {
+			uni.createSelectorQuery().in(this).select('#' + id).fields({
 				size: true,
 				scrollOffset: true
 			}, (data) => {

@@ -1,5 +1,6 @@
 import router from './index'
 import { Route } from 'uni-simple-router'
+import Vue from 'vue'
 
 //全局路由前置守卫
 router.beforeEach((to:Route, from:Route, next:Function) => {
@@ -8,6 +9,7 @@ router.beforeEach((to:Route, from:Route, next:Function) => {
 })
 // 全局路由后置守卫
 router.afterEach((to:Route, from:Route) => {
+    Vue.prototype.$store.dispatch('config/setPagePath', Vue.prototype.$utilFn.getMiniAppUrl(to.query))
 })
 
 

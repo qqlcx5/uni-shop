@@ -3,6 +3,9 @@
 		<view class="search-box ss-underline" id="searchRef">
 			<global-ss-input class="search-box__input" placeholder="输入搜索关键词">
 				<image class="search-box__image" src="~@/static/image/home/search.png" slot="before" mode="widthFix"></image>
+                <global-colors theme="error" pro="border-color" active>
+                    <text style="border: 1px solid #fff;border-color: inherit;">eee</text>
+                </global-colors>
 			</global-ss-input>
 		</view>
 		<view class="flex category-box" :style="{height: scrollHeight}">
@@ -42,7 +45,6 @@
 			}
 		},
 		onLoad() {
-            console.timeEnd('star')
 			this.calcELHeight();
 			this.getCatalogList();
 		},
@@ -59,8 +61,8 @@
 		},
 		methods: {
 			async calcELHeight() {
-				let res1 = await this.$utilFn.getElSize('searchRef', this)
-				let res2 = await this.$utilFn.getElSize('tabBarRef', this)
+				let res1 = await this.$utilFn.getElSize.apply(this, ['searchRef']);
+				let res2 = await this.$utilFn.getElSize.apply(this, ['tabBarRef']);
 				this.scrollHeight = uni.getSystemInfoSync().windowHeight - res1.height - res2.height + 'px';
 			},
 			async getCatalogList(id) {
@@ -120,7 +122,7 @@
 				.category-right__item_title{
 					font-size: 28rpx;
 					font-family: PingFangSC-Medium, PingFang SC;
-					font-weight: 500;
+					font-weight: bold;
 					color: #333333;
 					line-height: 40rpx;
 					padding: 12rpx;

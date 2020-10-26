@@ -111,7 +111,7 @@
     }
     .goods-price__title {
         font-size: 32rpx;
-        font-weight: 500;
+        font-weight: bold;
         color: #333333;
     }
     .goods-price__sales {
@@ -133,7 +133,7 @@
             padding-left: 32rpx;
             width: 132rpx;
             font-size: 26rpx;
-            font-weight: 500;
+            font-weight: bold;
             color: #333333;
         }
         .goods-specs__content{

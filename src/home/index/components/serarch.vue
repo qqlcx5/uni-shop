@@ -99,7 +99,7 @@ export default {
             height: 64rpx;border-radius: 8rpx;width: 64rpx;background: #ccc;
         }
         .name{
-            color: #fff;font-size: 36rpx;padding: 0 16rpx;line-height: 64rpx;height: 64rpx;font-weight: 500;
+            color: #fff;font-size: 36rpx;padding: 0 16rpx;line-height: 64rpx;height: 64rpx;font-weight: bold;
         }
     }
     .input{

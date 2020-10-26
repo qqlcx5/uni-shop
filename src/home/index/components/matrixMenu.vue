@@ -34,7 +34,7 @@ export default {
             width: 56rpx;height: 56rpx;margin: 0 auto 16rpx;display: block;
         }
         text{
-            font-size: 24rpx;color: #333333;line-height: 33rpx;font-weight: 500;
+            font-size: 24rpx;color: #333333;line-height: 33rpx;font-weight: bold;
         }
     }
 }

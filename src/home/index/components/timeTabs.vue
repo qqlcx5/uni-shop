@@ -87,12 +87,12 @@ export default {
       font-size: 32rpx;line-height: 1;margin-bottom: 10rpx;
     }
     .name{
-      font-size: 22rpx;font-weight: 500;line-height: 30rpx;
+      font-size: 22rpx;font-weight: bold;line-height: 30rpx;
     }
     &.active{
       color: #FA3F1E;font-weight: bold;
       .name{
-        font-weight: 500;
+        font-weight: bold;
       }
     }
     ::after{

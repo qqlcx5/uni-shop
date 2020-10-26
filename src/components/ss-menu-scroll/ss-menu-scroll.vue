@@ -129,7 +129,7 @@
             &.ss-menu-scroll-item__active{
                 .ss-menu-scroll-text{
                     color: #333;
-                    font-weight: 500;
+                    font-weight: bold;
                     background: transparent;
                     border-radius: 0;
                 }
@@ -160,7 +160,7 @@
                 .ss-menu-scroll-text{
                     color: #fff;
                     font-size: 32rpx;
-                    font-weight: 500;
+                    font-weight: bold;
                     background: transparent;
                     border-radius: 0;
                 }

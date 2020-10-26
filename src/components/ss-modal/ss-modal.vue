@@ -1,7 +1,6 @@
 <template>
 	<view class="ss-modal-body" :class="{'ss-modal-active' : animation, 'ss-modal-full': mode === 'insert' || position === 'middle', 'ss-modal-hastabbar': hasTabbar}">
 		<view class="ss-modal" :class="'ss-modal-' + position +' ' + 'ss-modal-' + mode" @touchmove.stop.prevent>
-			<text class="ss-modal-close" @click="hide()" v-if="showClose_"></text>
 			<slot></slot>
 		</view>
 		<view v-if="mask_" class="uni-mask" catchtouchmove="true" @click.stop="maskClose()" @touchmove.stop.prevent></view>
@@ -85,8 +84,10 @@
 			toggle () {
 				return !this.animation ? this.show() : this.hide()
 			},
-			modalFun(pro) {
-				return this[pro]();
+			modalFun(pro = 'show') {
+				this.$nextTick(() => {
+				    return this[pro]();
+				})
 			}
 		}
 	}
@@ -98,7 +99,8 @@
 		opacity: 0;
 		@include fixed(0, 0, 0, 0);
 		pointer-events: none;
-		transition: all .2s cubic-bezier(0.65, 0.05, 0.36, 1);
+		transition: all .3s cubic-bezier(0.65, 0.05, 0.36, 1);
+		// transition: all .2s ease-in;
 		z-index: 999;
 		&.ss-modal-full{
 			transform: scale(1.2);
@@ -113,16 +115,6 @@
 		}
 		/* #endif */
 	}
-	.uni-mask{
-		position: fixed;
-		z-index: 999;
-		top: 0;
-		right: 0;
-		left: 0;
-		bottom: 0;
-		background: rgba(0, 0, 0, 0.5);
-		z-index: 998;
-	}
 	.ss-modal{
 		position: fixed;
 		z-index: 999;
@@ -131,12 +123,6 @@
 		/deep/ .gmy-float-touch{
 			display: none;
 		}
-	}
-	.ss-modal-close{
-		width: 45rpx;
-		height: 85rpx;
-		@include abs(-85rpx, 30rpx);
-		background: url(../../static/img/culturalActivity/tc_close_icon@2x.png) center center / 100% 100% no-repeat;
 	}
 	.ss-modal-middle{
 		top: 50%;
@@ -192,6 +178,8 @@
 	.ss-modal-right{
 		right: 0;
 		max-width: 80%;
+        left: auto;
+		transform: translate(100%, 0);
 	}
 	.ss-modal-left{
 		left: 0;
@@ -232,6 +220,9 @@
 		.ss-modal-full.ss-modal-middle{
 			transform: translate(0, -50%);
 		}
+        .ss-modal-right{
+			transform: translate(0, 0);
+        }
 		.ss-modal-bottom{
 			transform: translate(0, 0);
 		}

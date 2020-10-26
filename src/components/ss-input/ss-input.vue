@@ -263,7 +263,7 @@
 		.ss-input-textarea{
 			width: 100%;
 		}
-			
+
 		&[ss-input-type="select"]{
 			.ss-input-icon__arrows{
 				@include abs(0, 0, 0, 0);
@@ -274,7 +274,7 @@
 				width: 100%;
 				padding-right: 20rpx;
 				pointer-events: auto;
-				
+
 			}
 		}
 		.ss-input-icon {

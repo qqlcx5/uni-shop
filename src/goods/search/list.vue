@@ -17,7 +17,7 @@
                     <view class="flex-1">
                         综合推荐
                     </view>
-                    <view class="flex-1">
+                    <view class="flex-1" @click="changeBrandFlag(!brandFlag)">
                         品牌
                     </view>
                     <view class="flex-1">
@@ -31,18 +31,30 @@
                     </view>
                 </view>
             </view>
-            <view class="filter-content">
-                <view class="filter-item-box">
-                    <view class="filter-item" v-for="(item, index) in 9" :key="index" @click="changeFilter('brand', index)">
+            <view class="filter-content" :class="{'filter-content__active': brandFlag}">
+                <view class="brand-box">
+                    <view class="brand-item" v-for="(item, index) in 9" :key="index" @click="changeFilter('brand', index)" :class="{'brand-item__active': selectItem_(index)}">
                         <image src="../../static/image/product/filter-select.png"></image>
                         <text>美的{{index + 1}}</text>
                     </view>
+                    <view class="flex filter-btn-gruop">
+                        <view class="flex-1">
+                            <button class="btn-white" @click="brand = []">重置</button>
+                        </view>
+                        <view class="flex-1">
+                            <button class="btn-error">确定(600+件商品)</button>
+                        </view>
+                    </view>
                 </view>
+                <view class="uni-mask" @click="changeBrandFlag(false)"></view>
             </view>
         </view>
         <view class="product-list-box">
-            <product-list :mode="listMode" />
+            <goods-list :mode="listMode" />
         </view>
+       <!-- <global-ss-modal mode="cover" position="right" ref="serveModal">
+            <view style="width: 80%;background-color: #fff;height: 100%;margin-right: 0;"></view>
+        </global-ss-modal> -->
     </view>
 </template>
 
@@ -51,13 +63,20 @@
         data() {
             return {
                 listMode: 'row',
-                brand: []
+                brand: [],
+                brandFlag: false,
+                serveFlag: true
             }
         },
         computed: {
             selectItem_() {
-                
+                return (val) => {
+                    return this.brand.findIndex(o => o === val) !== -1
+                }
             }
+        },
+        onReady() {
+          this.$refs.serveModal.modalFun();
         },
         methods: {
             /**
@@ -77,6 +96,9 @@
                     }
                 }
             },
+            changeBrandFlag(flag = true) {
+                this.brandFlag = flag;
+            },
             changeMode() {
                 this.listMode = this.listMode === 'column' ? 'row' : 'column';
             }
@@ -91,14 +113,34 @@
             background-color: #fff;
             .filter-content{
                 @include fixed(var(--window-top), 0, 0, 0);
-                background: rgba(#000, .6);
-                z-index: 99;
+                z-index: -1;
                 padding-top: 176rpx;
-                .filter-item-box{
+                opacity: 0;
+                @include tst();
+                .uni-mask{
+                    z-index: 1;
+                }
+                &.filter-content__active{
+                    opacity: 1;
+                    z-index: 9;
+                    .brand-box{
+                        transform: translateY(0);
+                    }
+                }
+                .brand-box{
                     background-color: #fff;
                     font-size: 0;
                     padding: 12rpx;
-                    .filter-item{
+                    position: relative;
+                    z-index: 2;
+                    @include tst();
+                    transform: translateY(-100%);
+                    .filter-btn-gruop{
+                        .flex-1{
+                            padding: 16rpx;
+                        }
+                    }
+                    .brand-item{
                         padding: 12rpx;
                         display: inline-block;
                         font-size: 28rpx;
@@ -115,7 +157,7 @@
                             opacity: 0;
                             @include tst();
                         }
-                        &.filter-item__active{
+                        &.brand-item__active{
                             font-size: bold;
                             color: #FA3F1E;
                             padding-left: 36rpx;
@@ -130,7 +172,7 @@
                 background-color: inherit;
                 @include fixed(var(--window-top), 0);
                 width: 100%;
-                z-index: 100;
+                z-index: 10;
                 .filter-box{
                     height: 80rpx;
                 }

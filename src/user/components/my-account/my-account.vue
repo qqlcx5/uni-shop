@@ -100,7 +100,7 @@ export default {
             display: flex;
             justify-content: space-between;
             font-size: 36rpx;
-            font-weight: 500;
+            font-weight: bold;
             color: #000;
             margin-bottom: 8rpx;
         }
@@ -160,7 +160,7 @@ export default {
             color: rgba(255, 255, 255, 0.7);
             .uname {
                 font-size: 28rpx;
-                font-weight: 500;
+                font-weight: bold;
                 color: #ffffff;
                 margin-right: 8rpx;
             }

@@ -1,6 +1,6 @@
 <template>
     <view class="product-list flex flex-wrap" :class="['product-list-' + mode]">
-        <view class="product-item" v-for="(item, index) in 20" :key="index">
+        <view class="product-item" v-for="(item, index) in 20" :key="index" @click="goDetial(item)">
             <view class="product-item-box">
                 <view class="product-item-top__box flex-ajcenter">
                     <image lazy-load src="https://test.oss.zoomspace.vip/images/202010/goods_img/0_G_1602894801192.jpg" class="full-width-height" mode="aspectFill"></image>
@@ -23,6 +23,11 @@
             mode: {
                 type: String,
                 default: 'column'
+            }
+        },
+        methods: {
+            goDetial(item) {
+                console.log(item);
             }
         }
     }
