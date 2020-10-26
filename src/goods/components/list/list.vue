@@ -36,7 +36,7 @@
 <style lang="scss" scoped>
     .product-list{
         border-radius: 24rpx 24rpx 0px 0px;
-        background-color: $bgColor;
+        background-color: $bg-color;
         padding: 12rpx;
         &.product-list-row{
            .product-item{

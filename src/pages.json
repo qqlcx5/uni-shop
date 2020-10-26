@@ -1,13 +1,13 @@
 {
     "pages": [
+        
         {
             "path": "home/category/index",
             "name": "category",
             "style": {
                 "navigationBarTitleText": "分类"
             }
-        },
-        {
+        }, {
             "path": "home/index/index",
             "name": "home",
             "style": {
@@ -16,7 +16,6 @@
                 "navigationBarTextStyle": "white"
             }
         }
-        
     ],
     "subPackages": [
         {

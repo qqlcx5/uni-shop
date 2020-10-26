@@ -17,7 +17,7 @@
                     <view class="flex-1">
                         综合推荐
                     </view>
-                    <view class="flex-1" @click="changeBrandFlag(!brandFlag)">
+                    <view class="flex-1" @click="changeModalFlag(!brandFlag)">
                         品牌
                     </view>
                     <view class="flex-1">
@@ -26,14 +26,14 @@
                     <view class="flex-1">
                         价格
                     </view>
-                    <view class="flex-1">
+                    <view class="flex-1" @click="changeModalFlag(true, 'filterFlag')">
                         筛选
                     </view>
                 </view>
             </view>
             <view class="filter-content" :class="{'filter-content__active': brandFlag}">
                 <view class="brand-box">
-                    <view class="brand-item" v-for="(item, index) in 9" :key="index" @click="changeFilter('brand', index)" :class="{'brand-item__active': selectItem_(index)}">
+                    <view class="brand-item" v-for="(item, index) in brandList" :key="index" @click="changeChecked(index, 'brandList')" :class="{'brand-item__active': item.checked}">
                         <image src="../../static/image/product/filter-select.png"></image>
                         <text>美的{{index + 1}}</text>
                     </view>
@@ -46,15 +46,46 @@
                         </view>
                     </view>
                 </view>
-                <view class="uni-mask" @click="changeBrandFlag(false)"></view>
+                <view class="uni-mask" @click="changeModalFlag(false)"></view>
             </view>
         </view>
         <view class="product-list-box">
             <goods-list :mode="listMode" />
         </view>
-       <!-- <global-ss-modal mode="cover" position="right" ref="serveModal">
-            <view style="width: 80%;background-color: #fff;height: 100%;margin-right: 0;"></view>
-        </global-ss-modal> -->
+       <global-ss-modal mode="cover" position="right" v-model="filterFlag">
+            <view class="filter-modal-content">
+                <view class="filter-modal-box">
+                    <view class="filter-modal-title">服务</view>
+                    <view class="filter-modal-list">
+                        <view class="filter-modal-item" :class="{'filter-modal-item__active': item.checked}" @click="changeChecked(index)" v-for="(item, index) in serveList" :key="item.value">
+                            <view class="btn-disabled">{{item.label}}</view>
+                        </view>
+                    </view>
+                </view>
+                <view class="hr12"></view>
+                <view class="filter-modal-box">
+                    <view class="filter-modal-title">价格区间</view>
+                    <view class="filter-modal-list flex">
+                        <view class="filter-modal-item flex-1">
+                            <ss-input class="filter-modal__input" type="price" decimal="0" v-model="lowPrice" placeholder="最低价"></ss-input>
+                        </view>
+                        <view class="filter-modal-item flex-1">
+                            <ss-input class="filter-modal__input" type="price" decimal="0" v-model="hightPrice" placeholder="最高价"></ss-input>
+                        </view>
+                    </view>
+                </view>
+                <view class="filter-modal-btns-clear">
+                    <view class="filter-modal-btns flex">
+                        <view class="flex-1">
+                            <button class="btn-disabled">重置</button>
+                        </view>
+                        <view class="flex-1">
+                            <button class="btn-error">确定</button>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </global-ss-modal>
     </view>
 </template>
 
@@ -62,43 +93,58 @@
     export default {
         data() {
             return {
+                lowPrice: '',
+                hightPrice: '',
                 listMode: 'row',
-                brand: [],
-                brandFlag: false,
-                serveFlag: true
+                brandList: [{
+                    value: 1,
+                    label: '美的1'
+                }, {
+                    value: 2,
+                    label: '美的2'
+                }, {
+                    value: 3,
+                    label: '美的2'
+                }, {
+                    value: 4,
+                    label: '美的2'
+                }],
+                brandFlag: false, //品牌弹窗标识
+                filterFlag: false,//筛选弹窗标识
+                serveList: [{
+                    value: 1,
+                    label: '仅看有货'
+                }, {
+                    value: 2,
+                    label: '促销'
+                }]
             }
-        },
-        computed: {
-            selectItem_() {
-                return (val) => {
-                    return this.brand.findIndex(o => o === val) !== -1
-                }
-            }
-        },
-        onReady() {
-          this.$refs.serveModal.modalFun();
         },
         methods: {
             /**
-             *  pro 属性名
-             * index 当前选中的下标
-             * isMultiple 是否多选
-             */
-            changeFilter(pro, index, isMultiple = true) {
-                let isExitIndex = this[pro].indexOf(index);
-                if(isExitIndex !== -1){
-                    this[pro].splice(isExitIndex, 1);
-                }else{
-                    if(isMultiple){
-                        this[pro].push(index);
-                    }else{
-                        this[pro][0] = index;
-                    }
+             * 选中函数
+             * index 要修改的下标值
+             * pro 要修改的对象值
+             * isRadio 是否开启单选但不必选（可以取消的单选）
+            */
+            changeChecked(index, pro = 'serveList', isRadio = false) {
+                if(!this[pro][index].checked && isRadio){
+                    let oldIndex = this[pro].findIndex(o => o.checked);
+                    oldIndex !== -1 && (this[pro][oldIndex].checked =  false);
                 }
+                this.$set(this[pro][index], 'checked', !this[pro][index].checked);
             },
-            changeBrandFlag(flag = true) {
-                this.brandFlag = flag;
+            /**
+             * 修改模态框显示因此状态
+             * flag 模态框显示隐藏状态
+             * pro 要修改的对象值
+            */
+            changeModalFlag(flag = true, pro = 'brandFlag') {
+                this[pro] = flag;
             },
+            /**
+             * 展示行列切换
+             */
             changeMode() {
                 this.listMode = this.listMode === 'column' ? 'row' : 'column';
             }
@@ -108,6 +154,61 @@
 
 <style lang="scss">
     .product-search-content{
+        .filter-modal-content{
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+            .filter-modal-btns-clear{
+                height: 88rpx;
+                .filter-modal-btns{
+                    @include fixed(null, 0, 0, 0);
+                    button{
+                        height: 88rpx;
+                        border-radius: 0;
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+            }
+            .filter-modal-title, .filter-modal-item, .filter-modal-box{
+                padding: 16rpx;
+            }
+            .filter-modal-title{
+                font-weight: bold;
+                color: #333333;
+                line-height: 40rpx;
+            }
+            .filter-modal-item{
+                font-weight: bold;
+                text-align: center;
+                display: inline-block;
+                .filter-modal__input{
+                    background-color: $bg-color;
+                    height: 58rpx;
+                    border-radius: 8rpx;
+                }
+                &.filter-modal-item__active{
+                    .btn-disabled{
+                        color: #FA3F1E;
+                        background: #FFF1EF;
+                        &::after{
+                            border-color: #FA3F1E;
+                        }
+                    }
+                }
+                .btn-disabled{
+                    font-size: 24rpx;
+                    height: 58rpx;
+                    width: 158rpx;
+                    border-radius: 8rpx;
+                    &::after{
+                        border-radius: 16rpx;
+                        border: 4rpx solid $bg-color;
+                    }
+                }
+            }
+        }
         .search-top-fixed-clear{
             height: 176rpx;
             background-color: #fff;

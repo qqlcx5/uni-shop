@@ -3,11 +3,11 @@
     <view class="details-cart__fixed">
         <view class="details-cart-content">
             <view class="icon flex-ajcenter">
-                <text>1</text>
+                <uni-icons size="44" type="iconkefu"/>
                 <text>客服</text>
             </view>
             <view class="icon flex-ajcenter">
-                <text>1</text>
+                <!-- <uni-icons color="#333" size="60" type="eye"/> -->
                 <text>客服</text>
             </view>
             <view class="icon flex-ajcenter">

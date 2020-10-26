@@ -6,7 +6,7 @@ body {
     font-size: 26rpx;
     color: #333;
     font-family: PingFangSC-Regular, PingFang SC;
-    background-color: $bgColor;
+    background-color: $bg-color;
 }
 
 view,
@@ -527,7 +527,6 @@ picker.uni-input-placeholder {
 */
 .font-sm {
     font-size: $font-sm !important;
-    ;
 }
 
 .font-base {
@@ -536,17 +535,15 @@ picker.uni-input-placeholder {
 
 .font-lg {
     font-size: $font-lg !important;
-    ;
 }
 
 /*
   常用边距margin padding
 */
-
 @for $i from 0 to 4 {
     .hr#{$i * 12} {
         height: $i * 12rpx;
-        background-color: $bgColor;
+        background-color: $bg-color;
         display: block;
     }
     .p#{$i * 12} {
@@ -574,16 +571,8 @@ picker.uni-input-placeholder {
     .mt#{$i * 12} {
         margin-top: $i * 12rpx !important;
     }
-
-    .mtb#{$i * 5} {
-        margin-top: ($i * 5)rpx !important;
-        margin-bottom: ($i * 5)rpx !important;
-    }
-
-    .mt#{$i * 5} {
-        margin-top: ($i * 5)rpx !important;
-    }
 }
+
 
 /*
 	下划线
@@ -718,11 +707,11 @@ picker.uni-input-placeholder {
 }
 
 .btn-disabled {
-    background-color: #E0E6EF;
-    color: #999;
+    background-color: $bg-color;
+    color: #333333;
 
     &::after {
-        border-color: #E0E6EF;
+        border-color: $bg-color;
     }
 }
 

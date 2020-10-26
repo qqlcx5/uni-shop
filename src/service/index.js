@@ -212,3 +212,8 @@ function removeStorageSync(list) {
 		}
 	})
 }
+
+
+// 登录接口写在这边
+// export function set
+

@@ -1,11 +1,8 @@
 <template>
 	<view class="ss-content home-category-content">
 		<view class="search-box ss-underline" id="searchRef">
-			<global-ss-input class="search-box__input" placeholder="输入搜索关键词">
+			<global-ss-input class="search-box__input" placeholder="输入搜索关键词" v-model="keyword">
 				<image class="search-box__image" src="~@/static/image/home/search.png" slot="before" mode="widthFix"></image>
-                <global-colors theme="error" pro="border-color" active>
-                    <text style="border: 1px solid #fff;border-color: inherit;">eee</text>
-                </global-colors>
 			</global-ss-input>
 		</view>
 		<view class="flex category-box" :style="{height: scrollHeight}">
@@ -38,6 +35,7 @@
 	export default {
 		data() {
 			return {
+                keyword: '',
 				menuIndex: -1,
 				menuList: [],
 				categoryData: [],

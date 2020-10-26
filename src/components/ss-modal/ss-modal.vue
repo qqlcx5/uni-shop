@@ -1,5 +1,5 @@
 <template>
-	<view class="ss-modal-body" :class="{'ss-modal-active' : animation, 'ss-modal-full': mode === 'insert' || position === 'middle', 'ss-modal-hastabbar': hasTabbar}">
+	<view class="ss-modal-body" :class="{'ss-modal-active' : modalFlag, 'ss-modal-full': mode === 'insert' || position === 'middle', 'ss-modal-hastabbar': hasTabbar}">
 		<view class="ss-modal" :class="'ss-modal-' + position +' ' + 'ss-modal-' + mode" @touchmove.stop.prevent>
 			<slot></slot>
 		</view>
@@ -9,11 +9,11 @@
 
 <script>
 	export default {
-		data () {
-			return {
-				animation: false
-			}
-		},
+        data() {
+            return {
+                modalFlag: false
+            }
+        },
 		props: {
 			/*
 			* 参数说明（定位）
@@ -46,8 +46,12 @@
 			},
 			maskabled: {
 				type: [Boolean, String],
+				default: true
+			},
+            value: {
+				type: Boolean,
 				default: false
-			}
+            }
 		},
 		computed: {
 			mask_() {
@@ -61,7 +65,14 @@
 			}
 		},
 		watch: {
-			animation(val) {
+            value: {
+                handler(val) {
+                    this.modalFun(val ? 'show' : 'hide');
+                },
+                immediate: true
+            },
+			modalFlag(val) {
+				this.$emit('input', val);
 				this.$emit('change', val);
 			}
 		},
@@ -70,7 +81,7 @@
 				return ;
 			},
 			show () {
-				this.animation = true;
+				this.modalFlag = true;
 				return true;
 			},
 			maskClose() {
@@ -78,11 +89,11 @@
 				this.hide();
 			},
 			hide () {
-				this.animation = false;
+				this.modalFlag = false;
 				return false;
 			},
 			toggle () {
-				return !this.animation ? this.show() : this.hide()
+				return !this.modalFlag ? this.show() : this.hide()
 			},
 			modalFun(pro = 'show') {
 				this.$nextTick(() => {
