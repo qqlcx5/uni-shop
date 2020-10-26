@@ -48,6 +48,18 @@
                     }
                 }
             ]
+        },
+        {
+            "root": "guest",
+            "pages": [
+                {
+                    "path": "details/index",
+                    "name": "guestDetails",
+                    "style": {
+                        "navigationBarTitleText": "我的"
+                    }
+                }
+            ]
         }
     ],
 	"globalStyle": {
