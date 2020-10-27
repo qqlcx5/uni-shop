@@ -53,10 +53,17 @@
             "root": "guest",
             "pages": [
                 {
-                    "path": "details/index",
-                    "name": "guestDetails",
+                    "path": "decorationDetails/index",
+                    "name": "guestDecorationDetails",
                     "style": {
-                        "navigationBarTitleText": "我的"
+                        "navigationBarTitleText": "案例详情"
+                    }
+                },
+                {
+                    "path": "caseDetails/index",
+                    "name": "guestCaseDetails",
+                    "style": {
+                        "navigationBarTitleText": "案例详情"
                     }
                 }
             ]

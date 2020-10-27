@@ -45,11 +45,11 @@
             </view>
             <view class="team-state">
                 <view class="team-item">
-                     <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                     <uni-icons color="#FA3F1E" size="42" type="icon-kefu"/>
                     <text class="desc">余额</text>
                 </view>
                 <view class="team-item">
-                    <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                    <uni-icons color="#FA3F1E" size="42" type="icon-kefu"/>
                     <text class="desc">余额</text>
                 </view>
             </view>

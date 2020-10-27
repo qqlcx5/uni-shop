@@ -17,21 +17,21 @@
                     <text class="goods-specs__title">已选</text>
                     <view class="goods-specs__content ss-underline">
                         <text class="goods-specs__text">12322</text>
-                         <uni-icons size="24" type="icontiaozhuan-liebiao"/>
+                         <uni-icons size="24" type="icon-tiaozhuan-liebiao"/>
                     </view>
                 </view>
                 <view class="goods-specs-item">
                     <text class="goods-specs__title">已选</text>
                     <view class="goods-specs__content ss-underline">
                         <text class="goods-specs__text">12322</text>
-                         <uni-icons size="24" type="icontiaozhuan-liebiao"/>
+                         <uni-icons size="24" type="icon-tiaozhuan-liebiao"/>
                     </view>
                 </view>
                 <view class="goods-specs-item">
                     <text class="goods-specs__title">已选</text>
                     <view class="goods-specs__content ss-underline">
                         <text class="goods-specs__text">12322</text>
-                         <uni-icons size="24" type="icontiaozhuan-liebiao"/>
+                         <uni-icons size="24" type="icon-tiaozhuan-liebiao"/>
                     </view>
                 </view>
             </view>

@@ -7,23 +7,23 @@
             </view>
             <view class="order-state">
                 <view class="order-item">
-                    <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                    <uni-icons color="#FA3F1E" size="42" type="icon-kefu"/>
                     <text class="desc">待付款</text>
                 </view>
                 <view class="order-item">
-                     <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                     <uni-icons color="#FA3F1E" size="42" type="icon-kefu"/>
                     <text class="desc">待付款</text>
                 </view>
                 <view class="order-item">
-                     <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                     <uni-icons color="#FA3F1E" size="42" type="icon-kefu"/>
                     <text class="desc">余额</text>
                 </view>
                 <view class="order-item">
-                     <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                     <uni-icons color="#FA3F1E" size="42" type="icon-kefu"/>
                     <text class="desc">余额</text>
                 </view>
                 <view class="order-item">
-                    <uni-icons color="#FA3F1E" size="42" type="iconkefu"/>
+                    <uni-icons color="#FA3F1E" size="42" type="icon-kefu"/>
                     <text class="desc">余额</text>
                 </view>
             </view>

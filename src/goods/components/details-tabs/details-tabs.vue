@@ -1,10 +1,15 @@
 <template>
-    <view class="goods-header-tabs flex-ajcenter">
-        <text class="uname" :class="{'active': active === 'goods'}" @click="handleSelect('goods')">商品</text>
-        <text class="uname" :class="{'active': active === 'details'}" @click="handleSelect('details')">详情</text>
-        <text class="uname" :class="{'active': active === 'recommend'}" @click="handleSelect('recommend')">推荐</text>
-        <uni-icons size="40" class="uname" type="iconfenxiang"/>
+    <view class=''>
+        <view class="goods-header-tabs fixed flex-ajcenter">
+            <text class="uname" :class="{'active': active === 'goods'}" @click="handleSelect('goods')">商品</text>
+            <text class="uname" :class="{'active': active === 'details'}" @click="handleSelect('details')">详情</text>
+            <text class="uname" :class="{'active': active === 'recommend'}" @click="handleSelect('recommend')">推荐</text>
+            <uni-icons size="40" class="uname" type="icon-fenxiang"/>
+        </view>
+        <view style="height: 80rpx;"></view>
     </view>
+
+    
 </template>
 <script>
 export default {
@@ -26,6 +31,12 @@ export default {
     height: 80rpx;
     background: #ffffff;
     font-size: 28rpx;
+    &.fixed{
+        position: fixed;
+        top: var(--window-top);
+        left: 0;
+        z-index: 10;
+    }
     .uname {
         padding: 0 28rpx;
         color: #000000;
