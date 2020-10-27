@@ -16,6 +16,7 @@
 </script>
 
 <style lang="scss">
+
     /*每个页面公共css */
 	@import "~@/assets/css/common.scss";
     /* 字体文件包 */
